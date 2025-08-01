@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEODE Lab | Earth Ecosystem Research</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f8fb;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: rgba(0, 78, 78, 0.85);
+      border-radius: 0 0 10px 10px;
+      flex-wrap: wrap;
+    }
+
+    .lab-name {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: #cde9e7;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #ffcc00;
+      text-decoration: underline;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
+        url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Lena_River_Delta_by_Landsat.jpg/1600px-Lena_River_Delta_by_Landsat.jpg')
+        center/cover no-repeat;
+      min-height: 100vh;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    .hero-content {
+      z-index: 2;
+      max-width: 850px;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #f1f1f1;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      background-color: #009688;
+      color: white;
+      padding: 14px 26px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:hover {
+      background-color: #00b39f;
+      transform: translateY(-2px);
+    }
+
+    .btn-alt {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 12px 24px;
+    }
+
+    .btn-alt:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .section {
+      padding: 80px 20px;
+      background-color: #fff;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #004e4e;
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 20px;
+      max-width: max-content;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #009688;
+      opacity: 0;
+    }
+
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 6px;
+      height: 100%;
+      background-color: #009688;
+      border-radius: 4px;
+    }
+
+    .typing-active {
+      animation: typing 2s steps(30, end) 0.5s 1 normal both, blink-caret 0.6s step-end infinite;
+      opacity: 1;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .person-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 1.2s ease-in;
+    }
+
+    .person-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    footer {
+      background-color: #003333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #009688; }
+    }
+
+    @media (max-width: 768px) {
+      .hero h2 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div>
+        <h1 class="lab-name">🌍 GEODE Lab</h1>
+        <div class="tagline">Global Earth Observation & Dynamics of Ecosystems</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#people">People</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#opportunities">Opportunities</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Global Earth Observation & Dynamics of Ecosystems</h2>
+      <p>We explore Earth’s changing ecosystems through satellite data, field research, and advanced modeling.</p>
+      <div class="cta-buttons">
+        <a href="#projects" class="btn">Explore Projects</a>
+        <a href="#opportunities" class="btn btn-alt">Join the Lab</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <h2 id="aboutTitle" class="section-title">About the Lab</h2>
+      <p>The GEODE Lab at Northern Arizona University conducts interdisciplinary research combining remote sensing, geospatial analysis, machine learning, and ecological field methods.</p>
+      <p>Our research focuses on climate-driven ecosystem transformations, biodiversity monitoring, carbon dynamics, and land-use change. We collaborate with government agencies and global institutions to inform environmental policy and decision-making.</p>
+      <p>The lab integrates expertise in environmental science, computer science, and spatial statistics to address critical questions about Earth system processes and sustainability in the Anthropocene.</p>
+      <div class="cta-buttons" style="margin-top: 30px;">
+        <a href="#research" class="btn">Learn More</a>
+        <a href="#publications" class="btn btn-alt">See Publications</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="people" class="section">
+    <div class="container">
+      <h2 class="section-title" id="peopleTitle">People</h2>
+      <div class="people-grid">
+        <div class="person-card">
+          <h3>Dr. Emma Lewis</h3>
+          <p>Principal Investigator</p>
+        </div>
+        <div class="person-card">
+          <h3>Liam Carter</h3>
+          <p>Postdoctoral Researcher</p>
+        </div>
+        <div class="person-card">
+          <h3>Sophia Nguyen</h3>
+          <p>Graduate Researcher</p>
+        </div>
+        <div class="person-card">
+          <h3>Noah Patel</h3>
+          <p>Undergraduate Assistant</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research" class="section">
+    <div class="container">
+      <h2 class="section-title">Research</h2>
+      <p>The GEODE Lab conducts cutting-edge research using remote sensing, geospatial analysis, and ecosystem modeling to understand how Earth's systems respond to climate and human pressures.</p>
+      <p>Our themes include vegetation dynamics, biodiversity monitoring, land surface phenology, and carbon cycling. Our work informs policy and conservation strategies worldwide.</p>
+      <div class="cta-buttons" style="margin-top: 30px;">
+        <a href="#projects" class="btn">Explore Projects</a>
+        <a href="#publications" class="btn btn-alt">See Publications</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <p>We work on interdisciplinary projects that bridge field observations and satellite-based modeling. Our active projects include:</p>
+      <ul style="margin-top: 15px; padding-left: 25px; line-height: 1.8;">
+        <li>🌱 Forest Canopy Dynamics & Biomass Mapping</li>
+        <li>🐾 Wildlife Habitat Connectivity & Risk Assessment</li>
+        <li>📡 AI-based Vegetation Monitoring with MODIS & Landsat</li>
+        <li>🌍 Modeling Carbon Flux with Machine Learning</li>
+      </ul>
+      <div class="cta-buttons" style="margin-top: 30px;">
+        <a href="#technologies" class="btn">Our Methods</a>
+        <a href="#opportunities" class="btn btn-alt">Get Involved</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="opportunities" class="section">
+    <div class="container">
+      <h2 class="section-title">Opportunities</h2>
+      <p>We’re always looking for motivated individuals to join our team. Whether you're a student, researcher, or collaborator, we’d love to hear from you!</p>
+      <p>Opportunities exist for undergraduate and graduate researchers, postdocs, and visiting scholars. We also welcome interdisciplinary collaborations.</p>
+      <div class="cta-buttons" style="margin-top: 30px;">
+        <a href="#contact" class="btn">Contact the Lab</a>
+        <a href="#about" class="btn btn-alt">Lab Culture</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p>We’d love to connect with you! Whether you're interested in our research, seeking collaboration, or just curious — don’t hesitate to reach out.</p>
+      <p><strong>Email:</strong> <a href="mailto:geodelab@nau.edu" style="color: #009688; font-weight: 600;">geodelab@nau.edu</a></p>
+      <p><strong>Address:</strong> School of Informatics, Computing, and Cyber Systems<br>
+      Northern Arizona University, Flagstaff, AZ 86011</p>
+      <div class="cta-buttons" style="margin-top: 30px;">
+        <a href="mailto:geodelab@nau.edu" class="btn">Email Us</a>
+        <a href="#opportunities" class="btn btn-alt">Join Our Team</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 GEODE Lab | Northern Arizona University | geodelab@nau.edu</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const titles = document.querySelectorAll(".section-title");
+
+      function activateTyping(title) {
+        if (!title.classList.contains("typing-active")) {
+          title.classList.add("typing-active");
+        }
+      }
+
+      function checkVisibility(title) {
+        const rect = title.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom >= 0;
+      }
+
+      function checkScroll() {
+        titles.forEach((title) => {
+          if (checkVisibility(title)) {
+            activateTyping(title);
+          }
+        });
+      }
+
+      window.addEventListener("scroll", checkScroll);
+      checkScroll();
+    });
+
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav ul li a");
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
